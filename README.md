@@ -33,7 +33,7 @@ A simple Unix-like shell program written in C. This project is designed to provi
 2. Navigate to the project directory:
 
    ```bash
-   cd simple-shell
+   cd holbertonschool-simple_shell
    ```
 
 3. Compile the program using `gcc`:
