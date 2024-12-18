@@ -27,7 +27,7 @@ A simple Unix-like shell program written in C. This project is designed to provi
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/simple-shell.git
+   git clone https://github.com/batrivieredev/holbertonschool-simple_shell.git
    ```
 
 2. Navigate to the project directory:
@@ -39,7 +39,7 @@ A simple Unix-like shell program written in C. This project is designed to provi
 3. Compile the program using `gcc`:
 
    ```bash
-   gcc -o simple_shell simple_shell.c
+   gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
    ```
 
 4. Run the shell:
