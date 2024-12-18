@@ -45,7 +45,7 @@ A simple Unix-like shell program written in C. This project is designed to provi
 4. Run the shell:
 
    ```bash
-   ./simple_shell
+   ./hsh
    ```
 
 ## Usage
