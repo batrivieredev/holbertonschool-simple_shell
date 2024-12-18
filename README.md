@@ -1,14 +1,14 @@
-### README EN COURS
+# README EN COURS
 
-Here's a sample `README.md` file for a project called "Simple Shell":
+Here's a sample `README.md` file for a project called "holbertonschool-simple_shell":
 
 ---
 
-# Simple Shell
+## Simple Shell
 
 A simple Unix-like shell program written in C. This project is designed to provide a basic implementation of a shell that can execute commands, handle user input, and interact with the operating system in a minimalistic manner.
 
-## Features
+### Features
 
 - Execute basic shell commands (e.g., `ls`, `echo`, etc.)
 - Support for piping between commands (`|`)
@@ -16,13 +16,13 @@ A simple Unix-like shell program written in C. This project is designed to provi
 - Handles input and output redirection (`>`, `<`)
 - Customizable prompt
 
-## Requirements
+### Requirements
 
 - A Unix-like operating system (Linux or macOS)
 - C compiler (e.g., `gcc`)
 - Basic understanding of C programming and shell concepts
 
-## Installation
+### Installation
 
 1. Clone the repository to your local machine:
 
@@ -48,7 +48,7 @@ A simple Unix-like shell program written in C. This project is designed to provi
    ./hsh
    ```
 
-## Usage
+### Usage
 
 Once the shell is running, you will see a prompt (e.g., `$`). You can enter commands just as you would in a normal shell.
 
@@ -60,7 +60,7 @@ $ echo "Hello, World!"
 $ cat < input.txt > output.txt
 ```
 
-### Supported Features:
+#### Supported Features:
 
 - **Basic Commands:** You can run standard shell commands like `ls`, `cat`, `pwd`, `echo`, etc.
 - **Piping:** You can pipe the output of one command to the input of another using `|`.
@@ -80,7 +80,7 @@ $ cat < input.txt > output.txt
 
 - **Exit Command:** Type `exit` to terminate the shell.
 
-## Contributing
+### Contributing
 
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature-branch`)
@@ -90,7 +90,7 @@ $ cat < input.txt > output.txt
 6. Create a new Pull Request
 
 
-## Authors
+### Authors
 
 - Ibrahim HOUMAIDI
 - Baptiste RIVIERE
