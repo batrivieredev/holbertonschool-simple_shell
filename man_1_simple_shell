@@ -1,0 +1,46 @@
+.TH EXAMPLE-COMMAND 1 "Janvier 2025" "1.0" "Manual page simple shell"
+.SH NAME
+example-command \- une commande d'exemple pour démonstration
+.SH SYNOPSIS
+.B example-command
+[\fIoptions\fR] [\fIarguments\fR]
+.SH DESCRIPTION
+.B example-command
+est une commande d'exemple utilisée pour démontrer la structure d'une page de manuel. Elle illustre comment documenter une commande en ligne de commande.
+
+.SH OPTIONS
+.TP
+.B \-h, \--help
+Affiche l'aide et quitte.
+.TP
+.B \-v, \--version
+Affiche la version de la commande et quitte.
+.TP
+.B \-o, \--output \fIfile\fR
+Spécifie le fichier de sortie. Si ce fichier existe, il sera écrasé.
+.TP
+.B \-f, \--force
+Force l'exécution de la commande même si des erreurs sont détectées.
+
+.SH ARGUMENTS
+.TP
+\fIarguments\fR
+Liste des arguments que la commande peut accepter. Ces arguments sont optionnels et dépendent de l'utilisation de la commande.
+
+.SH EXAMPLES
+.PP
+Pour afficher l'aide :
+.B example-command -h
+.PP
+Pour exécuter la commande avec un fichier de sortie :
+.B example-command -o output.txt
+
+.SH SEE ALSO
+.B other-command(1)
+.B another-command(1)
+
+.SH AUTHOR
+Écrit par [Votre Nom].
+
+.SH COPYRIGHT
+Copyright (C) 2023 [Votre Nom]. Licence MIT.
