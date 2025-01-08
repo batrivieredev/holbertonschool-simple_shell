@@ -5,9 +5,6 @@
  *
  * Return: Une chaîne de caractères entrée par l'utilisateur.
  */
-
-
-
 char *read_input(void)
 {
 	char *input = malloc(BUFFER_SIZE);

@@ -7,6 +7,10 @@
 void execute_command(char *command)
 {
 	pid_t pid = fork();
+	char *argv[2];
+
+	argv[0] = command;
+	argv[1] = NULL;
 
 	if (pid == -1)
 	{
@@ -16,7 +20,7 @@ void execute_command(char *command)
 	else if (pid == 0)
 	{
 		/* L'enfant exécute la commande */
-		if (execlp(command, command, NULL) == -1)
+		if (execve(command, argv, environ) == -1)
 		{
 			handle_error(command);
 		}

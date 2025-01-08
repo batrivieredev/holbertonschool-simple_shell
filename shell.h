@@ -10,6 +10,8 @@
 
 #define BUFFER_SIZE 1024
 
+extern char **environ;
+
 /* Function Prototypes */
 void prompt(void);
 void execute_command(char *command);

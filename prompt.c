@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * prompt - Affiche l'invite de commande
  */
