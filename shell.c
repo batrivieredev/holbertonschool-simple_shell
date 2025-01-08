@@ -1,25 +1,23 @@
 #include "shell.h"
 
 /**
- * main - Fonction principale du shell
- * Return: Retourne 0 si tout s'est bien passé, sinon une valeur d'erreur
+ * main - the main func
+ * Return: 0
  */
 int main(void)
 {
-	char *command;
+	pid_t id = 0;
+	ssize_t bytes = 0;
+	char input_buffer[MAX_INPUT_LENGTH];
+	char new_arg[20];
+	char *argv_buffer[MAXARGS];
 
-	while (1)
+	if (isatty(STDIN_FILENO) == 1)
 	{
-		prompt();				/* Afficher l'invite */
-		command = read_input(); /* Lire la commande */
-
-		if (strlen(command) > 0)
-		{
-			execute_command(command); /* Exécuter la commande */
-		}
-
-		free(command); /* Libérer la mémoire allouée pour la commande */
+		interactive_mode(bytes, id, input_buffer, argv_buffer, new_arg);
 	}
+	else
+		non_interactive_mode(input_buffer, argv_buffer, new_arg);
 
 	return (0);
 }
