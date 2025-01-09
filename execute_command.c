@@ -8,21 +8,31 @@
 void execute_command(char **cmd_argv, char *argv)
 {
 	pid_t pid;
+	char *command_path;
+
+	command_path = find_command_path(cmd_argv[0]);
+	if (command_path == NULL)
+	{
+		fprintf(stderr, "%s: command not found: %s\n", argv, cmd_argv[0]);
+		return;
+	}
 
 	/* Créer le processus enfant */
 	pid = fork();
 	if (pid == -1) /* Gérer les erreurs de fork */
 	{
 		perror(argv);
+		free(command_path);
 		return;
 	}
 
 	if (pid == 0) /* Bloc du processus enfant */
 	{
 		/* Exécuter la commande */
-		if (execvp(cmd_argv[0], cmd_argv) == -1)
+		if (execve(command_path, cmd_argv, environ) == -1)
 		{
-			perror(argv);		/* Afficher une erreur si execvp échoue */
+			perror(argv); /* Afficher une erreur si execve échoue */
+			free(command_path);
 			exit(EXIT_FAILURE); /* Quitter avec un code d'échec */
 		}
 	}
@@ -33,5 +43,6 @@ void execute_command(char **cmd_argv, char *argv)
 		{
 			perror("wait");
 		}
+		free(command_path);
 	}
 }
