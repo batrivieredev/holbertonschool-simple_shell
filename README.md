@@ -1,17 +1,11 @@
-# README EN COURS
-
-Here's a sample `README.md` file for a project called "holbertonschool-simple_shell":
-
----
-
-## Simple Shell
+# Simple Shell
 
 A simple Unix-like shell program written in C. This project is designed to provide a basic implementation of a shell that can execute commands, handle user input, and interact with the operating system in a minimalistic manner.
 
 ### Features
 
 - Execute basic shell commands (e.g., `ls`, `echo`, etc.)
-- Support for piping between commands (`|`)
+- Support for environment variable display (`env`)
 - Process management with `fork()`, `exec()`, and `wait()`
 - Handles input and output redirection (`>`, `<`)
 - Customizable prompt
@@ -50,24 +44,23 @@ A simple Unix-like shell program written in C. This project is designed to provi
 
 ### Usage
 
-Once the shell is running, you will see a prompt (e.g., `$`). You can enter commands just as you would in a normal shell.
+Once the shell is running, you will see a prompt (e.g., `Ibrahim and Baptiste's Shell$ >`). You can enter commands just as you would in a normal shell.
 
 Example:
 
 ```bash
 $ ls
 $ echo "Hello, World!"
-$ cat < input.txt > output.txt
 ```
 
 #### Supported Features:
 
 - **Basic Commands:** You can run standard shell commands like `ls`, `cat`, `pwd`, `echo`, etc.
-- **Piping:** You can pipe the output of one command to the input of another using `|`.
+- **Environment Variables:** Display environment variables using the `env` command.
 
   Example:
   ```bash
-  $ ls | grep "txt"
+  $ env
   ```
 
 - **Redirection:** You can redirect the input and output of commands using `>` and `<`.
@@ -88,7 +81,6 @@ $ cat < input.txt > output.txt
 4. Commit your changes (`git commit -am 'Add new feature'`)
 5. Push to the branch (`git push origin feature-branch`)
 6. Create a new Pull Request
-
 
 ### Authors
 
