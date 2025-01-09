@@ -27,13 +27,15 @@ void execute_loop(int is_interactive, char **argv)
 
 		line[nread - 1] = '\0'; /* Enlever le caractère de nouvelle ligne */
 
-		if (strcmp(line, "exit") == 0) /* Commande "exit" */
-			handle_exit();
-
 		process_input(line, cmd_argv); /* Tokeniser l'entrée en arguments */
 
 		if (cmd_argv[0] == NULL) /* Ignorer les lignes vides */
 			continue;
+
+		if (strcmp(cmd_argv[0], "exit") == 0) /* Commande "exit" */
+		{
+			handle_exit();
+		}
 
 		if (strcmp(cmd_argv[0], "env") == 0) /* Commande "env" */
 		{

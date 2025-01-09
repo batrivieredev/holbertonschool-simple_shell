@@ -10,11 +10,3 @@ void handle_env(void)
 	for (env = environ; *env != NULL; env++)
 		printf("%s\n", *env);
 }
-
-/**
- * handle_exit - Gère la commande "exit"
- */
-void handle_exit(void)
-{
-	exit(0); /* Quitter avec un code de statut de 0 */
-}
