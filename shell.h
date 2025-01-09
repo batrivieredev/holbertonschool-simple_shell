@@ -8,33 +8,29 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <signal.h>
-#include <limits.h>
+#include <errno.h>
 
-#define BUFFER_SIZE 1024     /* Taille du tampon pour la lecture */
-#define MAX_INPUT_LENGTH 1024/* Longueur maximale d'une commande utilisateur */
-#define MAXARGS 128          /* Nombre maximal d'arguments pour une commande */
-#define NEW_ARG_SIZE 20      /* Taille maximale pour un nouvel argument */
+extern char **environ; /* Déclaration de la variable d'environnement */
 
-extern char **environ;       /* Variables d'environnement */
+/* Fonction pour afficher les variables d'environnement */
+void handle_env(void);
 
-/* Prototypes des fonctions */
-void execute_command(char *command);
-void handle_error(char *command);
-void string_token(char *str, char *delimiter, char *argv[]);
-void add_bin_prefix(char *argv[], char *new_arg);
-void interactive_mode(ssize_t bytes, pid_t id, char *input_buffer,
-						char *argv_buffer[], char *new_arg);
-void non_interactive_mode(char *input_buffer, char *argv_buffer[],
-						char *new_arg);
-int built_in_command(char **argv);
+/* Fonction pour gérer la commande "exit" */
+void handle_exit(void);
 
-/* Fonctions utilitaires */
-int _strlen(char *s);
-void _strncpy(char *dest, char *src, int n);
-int _strcmp(char *s1, char *s2);
-int _atoi(char *s);
+/* Fonction pour afficher l'invite du shell */
+void display_prompt(void);
 
-#endif /* SHELL_H */
+/* Fonction pour tokeniser une chaîne en arguments */
+void process_input(char *input, char **cmd_argv);
+
+/* Fonction pour exécuter la boucle principale du shell */
+void execute_loop(int is_interactive, char **argv);
+
+/* Fonction pour exécuter une commande */
+void execute_command(char **cmd_argv, char *argv);
+
+/* Fonction pour trouver le chemin complet d'une commande */
+char *find_command_path(char *command);
+
+#endif
