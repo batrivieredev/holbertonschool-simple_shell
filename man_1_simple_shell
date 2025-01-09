@@ -1,46 +1,38 @@
-.TH EXAMPLE-COMMAND 1 "Janvier 2025" "1.0" "Manual page simple shell"
+.TH SIMPLE-SHELL 1 "Janvier 2025" "1.0" "Manual page for HSH (Holberton Simple Shell)"
 .SH NAME
-example-command \- une commande d'exemple pour démonstration
+hsh.c \- un shell simple pour exécuter des commandes
 .SH SYNOPSIS
-.B example-command
-[\fIoptions\fR] [\fIarguments\fR]
+.B hsh
+[\fIoptions\fR]
 .SH DESCRIPTION
-.B example-command
-est une commande d'exemple utilisée pour démontrer la structure d'une page de manuel. Elle illustre comment documenter une commande en ligne de commande.
+.B hsh
+est un shell interactif qui permet à l'utilisateur d'exécuter des commandes système. Il lit l'entrée de l'utilisateur, traite les commandes et les exécute dans un processus enfant.
 
-.SH OPTIONS
+.SH COMMANDES
 .TP
-.B \-h, \--help
-Affiche l'aide et quitte.
+.B exit
+Quitte le shell.
 .TP
-.B \-v, \--version
-Affiche la version de la commande et quitte.
-.TP
-.B \-o, \--output \fIfile\fR
-Spécifie le fichier de sortie. Si ce fichier existe, il sera écrasé.
-.TP
-.B \-f, \--force
-Force l'exécution de la commande même si des erreurs sont détectées.
-
-.SH ARGUMENTS
-.TP
-\fIarguments\fR
-Liste des arguments que la commande peut accepter. Ces arguments sont optionnels et dépendent de l'utilisation de la commande.
+.B env
+Affiche les variables d'environnement actuelles.
 
 .SH EXAMPLES
 .PP
-Pour afficher l'aide :
-.B example-command -h
+Pour démarrer le shell :
+.B ./hsh
 .PP
-Pour exécuter la commande avec un fichier de sortie :
-.B example-command -o output.txt
+Pour quitter le shell :
+.B exit
+.PP
+Pour quitter le shell également :
+.B CTRL + D
 
 .SH SEE ALSO
 .B other-command(1)
 .B another-command(1)
 
 .SH AUTHOR
-Écrit par [Votre Nom].
+Écrit par Ibrahim et Baptiste.
 
 .SH COPYRIGHT
-Copyright (C) 2023 [Votre Nom]. Licence MIT.
+Copyright (C) 2024 Ibrahim et Baptiste.
