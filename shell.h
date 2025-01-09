@@ -22,9 +22,7 @@
 extern char **environ;
 
 /* Function Prototypes */
-/*void prompt(void);*/
 void execute_command(char *command);
-/*char *read_input(void);*/
 void handle_error(char *command);
 void string_token(char *str, char *delimiter, char *argv[]);
 void add_bin_prefix(char *argv[], char *new_arg);
