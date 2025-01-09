@@ -16,7 +16,7 @@ extern char **environ; /* Déclaration de la variable d'environnement */
 void handle_env(void);
 
 /* Fonction pour gérer la commande "exit" */
-void handle_exit(void);
+void exit_shell(char **args, int last_status);
 
 /* Fonction pour afficher l'invite du shell */
 void display_prompt(void);

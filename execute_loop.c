@@ -34,7 +34,7 @@ void execute_loop(int is_interactive, char **argv)
 
 		if (strcmp(cmd_argv[0], "exit") == 0) /* Commande "exit" */
 		{
-			handle_exit();
+			exit_shell(cmd_argv, 0); /*Pass the arguments*/
 		}
 
 		if (strcmp(cmd_argv[0], "env") == 0) /* Commande "env" */
