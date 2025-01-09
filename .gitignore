@@ -1,0 +1,21 @@
+# Ignore binary files
+hsh
+
+# Ignore object files
+*.o
+
+# Ignore temporary files
+*.swp
+*.tmp
+
+# Ignore compiled libraries
+*.so
+
+# Ignore log files
+*.log
+
+# Ignore core dumps
+core
+
+# Ignore directories
+/build/
