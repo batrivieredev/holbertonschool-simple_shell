@@ -1,101 +1,80 @@
 #include "shell.h"
+
 /**
- * non_interactive_mode - Gère les commandes en mode non interactif
- * @input_buffer: Stocke la ligne d'entrée
- * @argv_buffer: Stocke les arguments
- * @new_arg: La commande avec le chemin
- * Return: Rien (void)
+ * interactive_mode - Gère le mode interactif du shell.
+ * @bytes: Nombre d'octets lus.
+ * @id: Identifiant du processus.
+ * @input_buffer: Tampon pour l'entrée utilisateur.
+ * @argv_buffer: Tableau pour les arguments de la commande.
+ * @new_arg: Tampon pour un nouvel argument.
  */
-void non_interactive_mode(char *input_buffer,
-		char *argv_buffer[], char *new_arg)
+void interactive_mode(ssize_t bytes, pid_t id, char *input_buffer,
+					char *argv_buffer[], char *new_arg)
 {
-	int id;
-	int bytes;
-	char *command;
-	char *multi_line[MAXARGS];
-
-	bytes = read(STDIN_FILENO, input_buffer, MAX_INPUT_LENGTH);
-	if (input_buffer[bytes - 1] == '\n')
-		input_buffer[bytes - 1] = '\0';
-
-	string_token(input_buffer, "\n", argv_buffer);
-	command = argv_buffer[0];
-	while (command != NULL)
+	while (1) /* Boucle infinie pour le mode interactif */
 	{
-		string_token(command, " ", multi_line);
-		built_in_command(multi_line);
-		add_bin_prefix(multi_line, new_arg);
+		printf("$ "); /* Prompt utilisateur */
+		bytes = read(STDIN_FILENO, input_buffer, MAX_INPUT_LENGTH - 1);
 
-		id = fork();
-		if (id == -1)
+		if (bytes == -1) /* Gestion des erreurs de lecture */
 		{
-			perror("Échec de fork");
-			exit(EXIT_FAILURE);
+			perror("Error reading input");
+			exit(1);
 		}
-		else if (id == 0)
-		{
-			execve(multi_line[0], multi_line, NULL);
-			perror(multi_line[0]);
-			exit(EXIT_FAILURE);
-		}
-		else
-			wait(NULL);
 
-		command = *(++argv_buffer);
+		if (bytes == 0) /* Fin de fichier (Ctrl+D) */
+		{
+			printf("\n");
+			break;
+		}
+
+		input_buffer[bytes - 1] = '\0'; /* Supprime caractère nouvelle ligne */
+
+		/* Si l'utilisateur entre une commande vide, continuer */
+		if (_strlen(input_buffer) == 0)
+			continue;
+
+		/* Tokeniser l'entrée et exécuter la commande */
+		string_token(input_buffer, " ", argv_buffer);
+		if (built_in_command(argv_buffer) == 0)
+		{
+			id = fork();
+			if (id == 0)
+			{
+				add_bin_prefix(argv_buffer, new_arg);
+				execute_command(argv_buffer[0]);
+			}
+			else
+			{
+				wait(NULL);
+			}
+		}
 	}
 }
 
 /**
- * interactive_mode - Gère les commandes en mode interactif
- * @bytes: Nombre d'octets lus à partir de l'entrée
- * @id: PID du processus
- * @input_buffer: Stocke la ligne d'entrée
- * @argv_buffer: Stocke les arguments
- * @new_arg: La commande avec le chemin
- * Return: Succès
+ * non_interactive_mode - Gère le mode non interactif du shell.
+ * @input_buffer: Tampon pour stocker l'entrée utilisateur.
+ * @argv_buffer: Tableau pour les arguments de la commande.
+ * @new_arg: Tampon pour un nouvel argument.
  */
-void interactive_mode(int bytes, int id,
-		char *input_buffer, char *argv_buffer[], char *new_arg)
+void non_interactive_mode(char *input_buffer, char *argv_buffer[],
+							char *new_arg)
 {
-	while (1)
+	ssize_t bytes = read(STDIN_FILENO, input_buffer, MAX_INPUT_LENGTH - 1);
+
+	if (bytes == -1) /* Gestion des erreurs de lecture */
 	{
-		write(STDOUT_FILENO, "$ ", 2);
-		bytes = read(STDIN_FILENO, input_buffer, MAX_INPUT_LENGTH);
+		perror("Error reading input");
+		exit(1);
+	}
 
-		if (bytes == -1)
-		{
-			perror("Erreur lors de la lecture de stdin");
-			continue;
-		}
-		else if (bytes == 0)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			break;
-		}
-		if (input_buffer[bytes - 1] == '\n')
-			input_buffer[bytes - 1] = '\0';
+	input_buffer[bytes] = '\0'; /* Termine la chaîne d'entrée */
 
-		string_token(input_buffer, " ", argv_buffer);
-		if (argv_buffer[0] == NULL || *argv_buffer[0] == '\0'
-				|| *argv_buffer[0] == ' ')
-			continue;
-
-		built_in_command(argv_buffer);
+	string_token(input_buffer, " ", argv_buffer);
+	if (built_in_command(argv_buffer) == 0)
+	{
 		add_bin_prefix(argv_buffer, new_arg);
-
-		id = fork();
-		if (id == -1)
-		{
-			perror("Échec de fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (id == 0)
-		{
-			execve(argv_buffer[0], argv_buffer, NULL);
-			perror(argv_buffer[0]);
-			exit(EXIT_FAILURE);
-		}
-		else
-			wait(NULL);
+		execute_command(argv_buffer[0]);
 	}
 }
