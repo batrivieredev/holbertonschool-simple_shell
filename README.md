@@ -77,29 +77,68 @@ $ echo "Hello, World!"
 
 ### Flowchart
 ```mermaid
-graph TD
-Start[Start]
-main[main() <br> - is_interactive <br> - execute_loop()]
-execute_loop[execute_loop() <br> - display_prompt() <br> - getline() <br> - process_input() <br> - parse "exit" <br> - handle "env" <br> - execute_command()]
-display_prompt[display_prompt() <br> - printf()]
-process_input[process_input() <br> - strtok()]
-handle_env[handle_env() <br> - printf()]
-execute_command[execute_command() <br> - fork() <br> - execvp() <br> - wait()]
-find_command_path[find_command_path() <br> - getenv() <br> - strtok() <br> - access()]
-parse_exit_status[parse_exit_status() <br> - atoi()]
-End[End]
+classDiagram
+    class Start {
+        <<State>>
+    }
 
-    Start --> main
-    main --> execute_loop
-    execute_loop --> display_prompt
-    execute_loop --> process_input
-    execute_loop --> execute_command
-    display_prompt --> process_input
-    process_input --> handle_env
-    handle_env --> execute_command
-    execute_command --> find_command_path
-    find_command_path --> parse_exit_status
-    parse_exit_status --> End
+    class Main {
+        - is_interactive : bool
+        - execute_loop() : void
+    }
+
+    class ExecuteLoop {
+        - display_prompt() : void
+        - getline() : string
+        - process_input() : void
+        - parse_exit() : bool
+        - handle_env() : void
+        - execute_command() : void
+    }
+
+    class DisplayPrompt {
+        - printf() : void
+    }
+
+    class ProcessInput {
+        - strtok() : string[]
+    }
+
+    class HandleEnv {
+        - printf() : void
+    }
+
+    class ExecuteCommand {
+        - fork() : int
+        - execvp() : void
+        - wait() : void
+    }
+
+    class FindCommandPath {
+        - getenv() : string
+        - strtok() : string[]
+        - access() : bool
+    }
+
+    class ParseExitStatus {
+        - atoi() : int
+    }
+
+    class End {
+        <<State>>
+    }
+
+    Start --> Main : "Entry Point"
+    Main --> ExecuteLoop : "Calls"
+    ExecuteLoop --> DisplayPrompt : "Displays"
+    ExecuteLoop --> ProcessInput : "Processes"
+    ExecuteLoop --> ExecuteCommand : "Executes"
+    DisplayPrompt --> ProcessInput : "Gets input"
+    ProcessInput --> HandleEnv : "Handles env"
+    HandleEnv --> ExecuteCommand : "Executes command"
+    ExecuteCommand --> FindCommandPath : "Finds path"
+    FindCommandPath --> ParseExitStatus : "Parses status"
+    ParseExitStatus --> End : "Exits"
 ```
 ### Contributing
 
