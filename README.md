@@ -59,6 +59,7 @@ $ echo "Hello, World!"
 - **Environment Variables:** Display environment variables using the `env` command.
 
   Example:
+
   ```bash
   $ env
   ```
@@ -66,12 +67,81 @@ $ echo "Hello, World!"
 - **Redirection:** You can redirect the input and output of commands using `>` and `<`.
 
   Example:
+
   ```bash
   $ echo "Hello, World!" > output.txt
   $ cat < input.txt
   ```
 
 - **Exit Command:** Type `exit` to terminate the shell.
+
+### Flowchart
++----------------------+
+|      Start           |
++----------------------+
+           |
+           v
++----------------------+
+|  main()              |
+|  - is_interactive    |
+|  - execute_loop()    |
++----------------------+
+           |
+           v
++----------------------+
+|  execute_loop()      |
+|  - display_prompt()  |
+|  - getline()         |
+|  - process_input()   |
+|  - handle "exit"     |
+|  - handle "env"      |
+|  - execute_command() |
++----------------------+
+           |
+           v
++----------------------+
+|  display_prompt()    |
+|  - printf()          |
++----------------------+
+           |
+           v
++----------------------+
+|  process_input()     |
+|  - strtok()          |
++----------------------+
+           |
+           v
++----------------------+
+|  handle_env()        |
+|  - printf()          |
++----------------------+
+           |
+           v
++----------------------+
+|  execute_command()   |
+|  - fork()            |
+|  - execvp()          |
+|  - wait()            |
++----------------------+
+           |
+           v
++----------------------+
+|  find_command_path() |
+|  - getenv()          |
+|  - strtok()          |
+|  - access()          |
++----------------------+
+           |
+           v
++----------------------+
+|  parse_exit_status() |
+|  - atoi()            |
++----------------------+
+           |
+           v
++----------------------+
+|        End           |
++----------------------+
 
 ### Contributing
 

@@ -2,30 +2,30 @@
 #include "shell.h"
 
 /**
- * parse_exit_status - Parses the exit status from the command
- * @cmd: The command string
+ * parse_exit_status - Analyse le statut de sortie de la commande
+ * @cmd: La chaîne de commande
  *
- * Return: The exit status (default is 0)
+ * Return: Le statut de sortie (par défaut est 0)
  */
 int parse_exit_status(char *cmd)
 {
-	char *arg = cmd + 4; /* Move pointer past "exit" */
+	char *arg = cmd + 4; /* Déplace le pointeur après "exit" */
 	int status = 0;
 	int i;
 
-	while (*arg == ' ') /* Skip any spaces after "exit" */
+	while (*arg == ' ') /* Ignore les espaces après "exit" */
 		arg++;
 
-	if (*arg != '\0') /* If there is something after "exit" */
+	if (*arg != '\0') /* S'il y a quelque chose après "exit" */
 	{
 		for (i = 0; arg[i]; i++)
 		{
-			if (!isdigit(arg[i])) /* Check if the argument is not a digit */
+			if (!isdigit(arg[i])) /* Vérifie si l'argument n'est pas un chiffre */
 			{
-				return (0); /* Return 0 to keep the shell running */
+				return (0); /* Retourne 0 pour continuer à faire tourner le shell */
 			}
 		}
-		status = atoi(arg); /* Convert the argument to an integer */
+		status = atoi(arg); /* Convertit l'argument en entier */
 	}
 
 	return (status);
