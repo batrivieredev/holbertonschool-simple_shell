@@ -8,14 +8,6 @@
 void execute_command(char **cmd_argv, char *argv)
 {
 	pid_t pid;
-	char *path;
-
-	path = find_command_path(cmd_argv[0]);
-	if (path == NULL)
-	{
-		fprintf(stderr, "%s: command not found\n", cmd_argv[0]);
-		exit(127);
-	}
 
 	/* Créer le processus enfant */
 	pid = fork();
@@ -28,7 +20,7 @@ void execute_command(char **cmd_argv, char *argv)
 	if (pid == 0) /* Bloc du processus enfant */
 	{
 		/* Exécuter la commande */
-		if (execvp(path, cmd_argv) == -1)
+		if (execvp(cmd_argv[0], cmd_argv) == -1)
 		{
 			perror(cmd_argv[0]); /* Afficher une erreur si execvp échoue */
 			exit(EXIT_FAILURE);	 /* Quitter avec un code d'échec */
@@ -42,5 +34,4 @@ void execute_command(char **cmd_argv, char *argv)
 			perror("wait");
 		}
 	}
-	free(path);
 }

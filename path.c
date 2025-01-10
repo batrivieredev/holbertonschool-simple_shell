@@ -11,12 +11,10 @@ char *find_command_path(char *command)
 	char *path_env, *path_copy, *dir, *full_path;
 	size_t command_len;
 
+
 	path_env = getenv("PATH"); /* Récupérer la variable d'environnement PATH */
-	if (!path_env || strlen(path_env) == 0)
-	{
-		fprintf(stderr, "PATH variable is empty or not set\n");
+	if (!path_env)
 		return (NULL);
-	}
 	path_copy = strdup(path_env); /* Copier PATH pour préserver l'original */
 	if (!path_copy)
 		return (NULL);
