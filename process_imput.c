@@ -14,13 +14,13 @@
 void process_input(char *input, char **cmd_argv)
 {
 	char *token; /* Pointeur pour stocker chaque token extrait */
-	int i = 0;   /* Index pour remplir le tableau cmd_argv */
+	int i = 0;	 /* Index pour remplir le tableau cmd_argv */
 
 	/* Récupérer le premier token */
 	token = strtok(input, " ");
 	while (token != NULL) /* Continuer jusqu'à ce qu'il n'y ait plus de tokens */
 	{
-		cmd_argv[i++] = token; /* Ajouter le token au tableau */
+		cmd_argv[i++] = token;	   /* Ajouter le token au tableau */
 		token = strtok(NULL, " "); /* Récupérer le token suivant */
 	}
 	cmd_argv[i] = NULL; /* Terminer le tableau avec NULL */

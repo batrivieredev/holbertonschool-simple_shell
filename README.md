@@ -76,74 +76,30 @@ $ echo "Hello, World!"
 - **Exit Command:** Type `exit` to terminate the shell.
 
 ### Flowchart
+```mermaid
+graph TD
+Start[Start]
+main[main() <br> - is_interactive <br> - execute_loop()]
+execute_loop[execute_loop() <br> - display_prompt() <br> - getline() <br> - process_input() <br> - parse "exit" <br> - handle "env" <br> - execute_command()]
+display_prompt[display_prompt() <br> - printf()]
+process_input[process_input() <br> - strtok()]
+handle_env[handle_env() <br> - printf()]
+execute_command[execute_command() <br> - fork() <br> - execvp() <br> - wait()]
+find_command_path[find_command_path() <br> - getenv() <br> - strtok() <br> - access()]
+parse_exit_status[parse_exit_status() <br> - atoi()]
+End[End]
 
-```plaintext
-+----------------------+
-|      Start           |
-+----------------------+
-           |
-           v
-+----------------------+
-|  main()              |
-|  - is_interactive    |
-|  - execute_loop()    |
-+----------------------+
-           |
-           v
-+----------------------+
-|  execute_loop()      |
-|  - display_prompt()  |
-|  - getline()         |
-|  - process_input()   |
-|  - parse  "exit"     |
-|  - handle "env"      |
-|  - execute_command() |
-+----------------------+
-           |
-           v
-+----------------------+
-|  display_prompt()    |
-|  - printf()          |
-+----------------------+
-           |
-           v
-+----------------------+
-|  process_input()     |
-|  - strtok()          |
-+----------------------+
-           |
-           v
-+----------------------+
-|  handle_env()        |
-|  - printf()          |
-+----------------------+
-           |
-           v
-+----------------------+
-|  execute_command()   |
-|  - fork()            |
-|  - execvp()          |
-|  - wait()            |
-+----------------------+
-           |
-           v
-+----------------------+
-|  find_command_path() |
-|  - getenv()          |
-|  - strtok()          |
-|  - access()          |
-+----------------------+
-           |
-           v
-+----------------------+
-|  parse_exit_status() |
-|  - atoi()            |
-+----------------------+
-           |
-           v
-+----------------------+
-|        End           |
-+----------------------+
+    Start --> main
+    main --> execute_loop
+    execute_loop --> display_prompt
+    execute_loop --> process_input
+    execute_loop --> execute_command
+    display_prompt --> process_input
+    process_input --> handle_env
+    handle_env --> execute_command
+    execute_command --> find_command_path
+    find_command_path --> parse_exit_status
+    parse_exit_status --> End
 ```
 ### Contributing
 
