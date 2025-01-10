@@ -95,7 +95,7 @@ $ echo "Hello, World!"
 |  - display_prompt()  |
 |  - getline()         |
 |  - process_input()   |
-|  - handle "exit"     |
+|  - parse  "exit"     |
 |  - handle "env"      |
 |  - execute_command() |
 +----------------------+
