@@ -76,6 +76,10 @@ $ echo "Hello, World!"
 - **Exit Command:** Type `exit` to terminate the shell.
 
 ### Flowchart
+
+### Flowchart
+
+```plaintext
 +----------------------+
 |      Start           |
 +----------------------+
