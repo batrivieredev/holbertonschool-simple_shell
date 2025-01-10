@@ -77,8 +77,6 @@ $ echo "Hello, World!"
 
 ### Flowchart
 
-### Flowchart
-
 ```plaintext
 +----------------------+
 |      Start           |
@@ -146,7 +144,7 @@ $ echo "Hello, World!"
 +----------------------+
 |        End           |
 +----------------------+
-
+```
 ### Contributing
 
 1. Fork the repository
