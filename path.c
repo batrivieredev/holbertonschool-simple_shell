@@ -11,6 +11,14 @@ char *find_command_path(char *command)
 	char *path_env, *path_copy, *dir, *full_path;
 	size_t command_len;
 
+	/* Vérifier si la commande est un chemin absolu ou relatif */
+	if (command[0] == '/' || command[0] == '.')
+	{
+		if (access(command, X_OK) == 0)
+			return (strdup(command));
+		else
+			return (NULL);
+	}
 
 	path_env = getenv("PATH"); /* Récupérer la variable d'environnement PATH */
 	if (!path_env)
