@@ -46,9 +46,6 @@ void execute_loop(int is_interactive, char **argv)
 		}
 
 		execute_command(cmd_argv, argv[0]); /* Exécuter la commande */
-
-		if (!is_interactive) /* Quitter après une commande en mode non interactif */
-			break;
 	}
 
 	free(line); /* Libérer la mémoire allouée */
