@@ -22,8 +22,8 @@ void execute_command(char **cmd_argv, char *argv)
 		/* Exécuter la commande */
 		if (execvp(cmd_argv[0], cmd_argv) == -1)
 		{
-			perror(argv);		/* Afficher une erreur si execvp échoue */
-			exit(EXIT_FAILURE); /* Quitter avec un code d'échec */
+			perror(cmd_argv[0]); /* Afficher une erreur si execvp échoue */
+			exit(EXIT_FAILURE);	 /* Quitter avec un code d'échec */
 		}
 	}
 	else /* Bloc du processus parent */

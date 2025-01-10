@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <ctype.h>
 
 extern char **environ; /* Déclaration de la variable d'environnement */
 
@@ -16,7 +17,7 @@ extern char **environ; /* Déclaration de la variable d'environnement */
 void handle_env(void);
 
 /* Fonction pour gérer la commande "exit" */
-void exit_shell(char **args, int last_status);
+int parse_exit_status(char *cmd);
 
 /* Fonction pour afficher l'invite du shell */
 void display_prompt(void);
